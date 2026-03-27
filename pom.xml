@@ -42,7 +42,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-		<!-- ✅ AÑADIDO -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
@@ -90,6 +89,7 @@
 
 	</dependencies>
 
+	<!-- Esto es lo que genera el cliente de la API -->
 	<build>
 		<plugins>
 			<plugin>
@@ -107,6 +107,10 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
+							<!-- Hay que generar el fichero api.json -->
+							<!-- Se puede generar con:
+								curl http://localhost:8080/swagger/v1/swagger.json -o src/main/resources/api.json
+							-->
 							<inputSpec>${project.basedir}/src/main/resources/api.json</inputSpec>
 							<generatorName>java</generatorName>
 							<!-- ✅ AÑADIDO -->
