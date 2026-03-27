@@ -2,6 +2,7 @@ package servicios;
 
 import interfaces.InterfazEnviarEmails;
 import modelo.Destinatario;
+import org.openapitools.client.ApiClient;
 import org.openapitools.client.api.EmailApi;
 import org.openapitools.client.model.EmailResponse;
 import org.springframework.stereotype.Service;
@@ -9,9 +10,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class EnviarEmails implements InterfazEnviarEmails {
     private final EmailApi emailApi;
+    private final ApiClient apiClient;
 
     public EnviarEmails() {
-        this.emailApi = new EmailApi();
+        this.apiClient = new ApiClient();
+        apiClient.setBasePath("http://localhost:8080");
+        this.emailApi = new EmailApi(apiClient);
     }
 
     @Override
