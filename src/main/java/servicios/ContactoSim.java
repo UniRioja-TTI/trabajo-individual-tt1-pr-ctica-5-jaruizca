@@ -54,10 +54,16 @@ public class ContactoSim implements InterfazContactoSim {
     public int solicitarSimulation(DatosSolicitud datosSolicitud) {
         List<Integer> cantidadesIniciales = new ArrayList<>();
         List<String> nombreEntidades = new ArrayList<>();
-        datosSolicitud.getNums().forEach((key,value)->{
+
+
+        for (Map.Entry<Integer, Integer> entry : datosSolicitud.getNums().entrySet()) {
+            Integer key = entry.getKey();
+            Integer value = entry.getValue();
+            if (!mapEntidades.containsKey(key)) return -1;
             nombreEntidades.add(mapEntidades.get(key).getName());
             cantidadesIniciales.add(value);
-        });
+        }
+
         Solicitud solicitud =  new Solicitud();
         solicitud.setCantidadesIniciales(cantidadesIniciales);
         solicitud.setNombreEntidades(nombreEntidades);
@@ -75,7 +81,7 @@ public class ContactoSim implements InterfazContactoSim {
 
     @Override
     public List<Entidad> getEntities() {
-        return this.mapEntidades.values().stream().toList();
+        return List.copyOf(this.mapEntidades.values());
     }
 
     @Override

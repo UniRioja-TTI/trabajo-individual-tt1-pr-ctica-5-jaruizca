@@ -20,7 +20,7 @@ public class EnviarEmails implements InterfazEnviarEmails {
 
     @Override
     public boolean enviarEmail(Destinatario dest, String email) {
-        EmailResponse response = emailApi.emailPost(dest.getDireccion(), email).block();
+        EmailResponse response = emailApi.emailPost(email, dest.getDireccion()).block();
         if (response == null) return false;
         return response.getDone() != null ? response.getDone() : false;
     }

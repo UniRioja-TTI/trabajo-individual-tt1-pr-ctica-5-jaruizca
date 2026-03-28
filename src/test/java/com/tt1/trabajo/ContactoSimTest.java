@@ -16,8 +16,7 @@ class ContactoSimTest {
 
     @BeforeEach
     void setup() {
-        int seed = 549015;
-        ics = new ContactoSim(seed);
+        ics = new ContactoSim();
     }
 
     @Test
@@ -29,6 +28,8 @@ class ContactoSimTest {
 
     @Test
     void isValidEntityTest(){
-        assertTrue(ics.isValidEntityId());
+        assertTrue(
+            ics.isValidEntityId(ics.getEntities().get(0).getId())
+        );
     }
 }
