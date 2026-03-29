@@ -1,0 +1,16 @@
+services:
+  cliente:
+    build: .
+    networks:
+      - consumible
+    environment:
+      SERVICIO_CONSUMIBLE_HOST: servicio
+      SERVICIO_CONSUMIBLE_PORT: 8080
+    ports:
+      - 8888:8888
+  servicio:
+    image: javillour/servicio-tt1:amd64
+    networks:
+      - consumible
+networks:
+  consumible:

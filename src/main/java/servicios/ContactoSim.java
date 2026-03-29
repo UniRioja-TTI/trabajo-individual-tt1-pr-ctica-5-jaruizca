@@ -33,7 +33,11 @@ public class ContactoSim implements InterfazContactoSim {
 
     public ContactoSim() {
         apiClient = new ApiClient();
-        apiClient.setBasePath("http://localhost:8080");
+        String host = System.getenv("SERVICIO_CONSUMIBLE_HOST");
+        String port = System.getenv("SERVICIO_CONSUMIBLE_PORT");
+        host = host != null ? host : "localhost";
+        port = port != null ? port : "8888";
+        apiClient.setBasePath("http://" + host + ":" + port);
         solicitudApi = new SolicitudApi(apiClient);
         resultadosApi = new ResultadosApi(apiClient);
 
